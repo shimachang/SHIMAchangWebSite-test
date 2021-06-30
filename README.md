@@ -6,7 +6,10 @@
 * HTML
 * SCSS
 * JavaScript(es6)
+* jQuery
 * Webpack "^5.35.1"
+* Firebase
+* fontAwesome
 
 ## インストール
 ```
@@ -29,3 +32,13 @@ npm run prod
 
 npm run lint-fix
 ```
+## なぜ作ったのか？
+<p>サウンドクリエイターとしての宣伝媒体が必要と思い作成しました。</p>
+
+## できること
+<P>Firebaseの機能を使うことでお問い合わせフォームの実装がしています。</p>
+
+## 今後の発展
+* アニメーションの充実
+* CI/CDの実装
+* 自動でのメール転送機能
