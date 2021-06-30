@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix=”og: http://ogp.me/ns#”>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2CArray.prototype.find%2CIntersectionObserver" crossorigin="anonymous" defer></script>
+    <meta property="og:url" content="https://shimachangwebsite-e91d1.web.app/"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="しまちゃんぐの音楽部屋 楽曲制作ページ"/>
+    <meta property="og:description" content="サウンドクリエイターSHIMAchnagの公式ホームページです"/>
+    <meta property="og:site_name" content="しまちゃんぐの音楽部屋"/>
+    <meta property="og:image" content="https://shimachangwebsite-e91d1.web.app/images/ogp.png"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@shimachanggg"/>
+    <title>Composing</title>
+  </head>
+  <body data-barba="wrapper">
+    <div id="loader-bg">
+      <div id="loader">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <p>Loading Now...</p>
+      </div>
+    </div>
+    <div class="mask" id="mask"></div>
+    <header>
+      <h1><a href="/">しまちゃんぐの音楽部屋</a></h1>
+      <div class="menuButton" id="menuButton">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <nav id="nav">
+        <ul>
+          <li><a href="/">Top</a></li>
+          <li><a href="./guitar.html">Guitar</a></li>
+          <li><a href="./composing.html">Composing</a></li>
+          <li><a href="./mixing.html">Mixing</a></li>
+          <li><a href="./price.html">料金について</a></li>
+          <li><a id="contact" href="#">お問い合わせ</a></li>
+        </ul>
+        <div class="nav-sns">
+          <a href="https://twitter.com/shimachanggg" target="_blank">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+          <a href="https://www.instagram.com/shimachanggg">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC24Kq3_eLek76qc_fKqtgsQ" target="_blank">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+      </nav>
+    </header>
+    <div data-barba="container" data-barba-namespace="other">
+      <!--コンソールエラー対策-->
+      <div id="main-container"></div>
+      <div class="servicePage">
+        <div class="title">
+          <h1>Composing</h1>
+        </div>
+        <div class="image">
+          <div id="ComposingPage"></div>
+        </div>
+        <div class="content">
+          <h2>Composition</h2>
+          <p>作曲します作曲します作曲します作曲します
+            作曲します作曲します作曲します作曲します
+            作曲します作曲します作曲します作曲します
+            作曲します作曲します作曲します作曲します
+          </p>
+        </div>
+        <div class="content">
+          <h2>Arrangement</h2>
+          <p>アレンジしますアレンジしますアレンジ
+            しますアレンジしますアレンジしますアレンジしますアレンジしますアレンジしますアレンジします
+            アレンジしますアレンジします
+            アレンジしますアレンジしますアレンジします
+            アレンジしますアレンジしますアレンジしますアレンジしますアレンジしますアレンジしますアレンジします
+          </p>
+        </div>
+        <div class="content">
+          <h2>Song Writing</h2>
+          <p>作詞もします作詞もします作詞もします
+            作詞もします作詞もします作詞もします作詞もします作詞もします作詞もします
+            作詞もします作詞もします作詞もします作詞もします
+          </p>
+        </div>
+      </div>
+      <div class="contactPage">
+          <div class="title">
+            <h1 id="contactAnchor">Contact</h1>
+          </div>
+          <form class="contactForm">
+            <div class="formWrap">
+              <label for="inputName">お名前</label>
+              <input type="text" id="inputName">
+              <span></span>
+            </div>
+            <div class="formWrap">
+              <label for="inputEmail">メールアドレス</label>
+              <input type="email" id="inputEmail">
+              <span></span>
+            </div>
+            <div class="formWrap">
+              <label for="inputConfirm">メールアドレス（確認）</label>
+              <input type="email" id="inputConfirm">
+              <span></span>
+            </div>
+            <div class="formWrap">
+              <label for="inputMessage">お問い合わせ内容</label>
+              <textarea name="" id="inputMessage" cols="30" rows="10"></textarea>
+            </div>
+            <button class="submitBtn" type="submit">確認</button>
+          </form>
+          <section id="modalArea" class="modalArea">
+            <div id="modalBg" class="modalBg"></div>
+            <div class="modalWrapper">
+              <div class="modal-header">
+                <h2>確認画面</h2>
+              </div>
+              <h3>お名前</h3>
+              <p id="name"></p>
+              <h3>メールアドレス</h3>
+              <p id="email"></p>
+              <h3>お問い合わせ内容</h3>
+              <p id="message"></p>
+              <div class="modal-footer">
+                <button id="closeModal" class="backBtn">戻る</button>
+                <button id="contactBtn">送信</button>
+              </div>
+            </div>
+            <div id="closeModal" class="closeModal">
+              ×
+            </div>
+          </section>
+          <section id="sendedArea">
+            <div id="sendedBg"></div>
+            <div class="sendedDisplay">
+              <h3>送信完了しました</h3>
+              <button id="close">OK</button>
+            </div>
+          </section>
+        </div>
+      <footer>
+        <div class="footer-content">
+          <a href="https://twitter.com/shimachanggg" target="_blank">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+          <a href="https://www.instagram.com/shimachanggg">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC24Kq3_eLek76qc_fKqtgsQ" target="_blank">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+        </div>
+      </footer>
+      <div class="copyright">
+        <p>©︎ Copyriget 2021 SHIMAchang All right reserved</p>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+  </body>
+</html>
