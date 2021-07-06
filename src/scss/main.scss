@@ -8,9 +8,23 @@ $fontColor: #fff8dc;
   margin: 0;
   padding: 0;
   body {
-    font-family: "Yu Gothic",Arial, Helvetica, sans-serif;
+    font-family: 'Josefin Sans','Yu Gothic',Arial, Helvetica, sans-serif;
     ul {
       list-style: none;
+    }
+    //一文字ずつアニメーション
+    @keyframes showText {
+      0% {
+        opacity: 0;
+        transform: translateY(1em);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .animationNode span{
+      display: inline-block;
+      animation: showText 1s backwards;
     }
 
     //ローダー
@@ -113,6 +127,10 @@ $fontColor: #fff8dc;
         padding: 0 1%;
         letter-spacing: .1em;
         background-color: rgba($color-second, .8);
+        &:hover {
+          background: lighten($color-second, 15%);
+          transition: .3s;
+        }
       }
       a {
         font-size: 1em;
@@ -128,6 +146,7 @@ $fontColor: #fff8dc;
         cursor: pointer;
         &:hover {
           background: lighten($color-primary, 15%);
+          transition: .3s;
         }
         div {
           height: 2px;
@@ -186,19 +205,31 @@ $fontColor: #fff8dc;
             align-items: center;
             justify-content: center;
             height: 80%;
-
           }
           li {
             &:not(:first-of-type) {
               padding-top: 20px;
             }
-          }
-          a {
-            &:hover {
-              cursor: pointer;
-              background-color: rgb(85, 85, 85);
-              transition: 0.3s;
-              perspective: 1000;
+            a {
+              position: relative;
+              display: inline-block;
+              &::after {
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                content: '';
+                width: 100%;
+                height: 2px;
+                background:$color-second;
+                transform: scale(0, 1);
+                transform-origin: left top;
+                transition: .3s;
+              }
+              &:hover::after {
+                cursor: pointer;
+                transform: scale(1, 1);
+                perspective: 1000;
+              }
             }
           }
         }
@@ -208,6 +239,14 @@ $fontColor: #fff8dc;
           margin: 0 10px;
           padding-top: 20%;
           border-top: 1px solid black;
+          svg {
+            &:hover {
+              transform: scale(1.25);
+              transition: .3s;
+              perspective: 1000;
+              color:($color-second);
+            }
+          }
         }
       }
       h1 {
@@ -219,20 +258,89 @@ $fontColor: #fff8dc;
       }
     }
     .topBtn {
-      height: 50px;
-      width: 60px;
-      background-color: rgba($color-primary, .9);
-      color: $fontColor;
+      color: $color-second;
       cursor: pointer;
       position: fixed;
-      right: 0;
-      bottom: 60px;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      right: 2em;
+      bottom: 9em;
+      z-index: 1;
+      font-weight: normal;
+      display: inline-block;
+      font-size: 1em;
+      line-height: 1;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      writing-mode: vertical-lr;
+      &::before {
+        position: absolute;
+        content: '';
+        top: -16em;
+        bottom: 0;
+        right: 25%;
+        margin: auto;
+        display: inline-block;
+        transform: skewY(135deg);
+        border-top: 3px solid $color-second;
+        border-right: 1px solid $color-second;
+        width: .5em;
+        height: 5em;
+      }
+      &::after {
+        content: '';
+        height: 30px;
+        width: 2px;
+        position: absolute;
+        right: 22%;
+        top: -5em;
+        background-color: $fontColor;
+        animation: sdl reverse 1.5s ease infinite;
+      }
       &:hover {
         background: lighten($color-primary, 15%);
+      }
+    }
+    .scroll {
+      display: inline-block;
+      position: fixed;
+      left: 2em;
+      bottom: 9em;
+      z-index: 1;
+      padding: 10px 10px 110px;
+      overflow: hidden;
+      color: $color-second;
+      font-size: 1em;
+      line-height: 1;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      writing-mode: vertical-lr;
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 45%;
+        width: 1px;
+        height: 100px;
+        background: $color-second;
+      }
+      &::after {
+        content: '';
+        height: 30px;
+        width: 2px;
+        position: absolute;
+        left: 42%;
+        bottom: 0;
+        background-color: $fontColor;
+        animation: sdl 1.5s ease infinite;
+      }
+      @keyframes sdl {
+        0% {
+          transform: translateY(-50px);
+        }
+        50%, 100% {
+          transform: translateY(30px);
+        }
       }
     }
     .main {
@@ -517,6 +625,12 @@ $fontColor: #fff8dc;
           padding-top: 10px;
           padding-right: 0;
           color: $fontColor;
+          &:hover {
+            transform: scale(1.5);
+            transition: .3s;
+            perspective: 1000;
+            color:($color-second);
+          }
         }
       }
     }
@@ -668,8 +782,6 @@ $fontColor: #fff8dc;
         }
       }
       .topBtn {
-        width: 5vw;
-        height: 10vh;
         svg {
           transform: scale(1.25);
         }
@@ -776,12 +888,7 @@ $fontColor: #fff8dc;
             padding-top: 25px;
             padding-right: 10px;
             cursor: pointer;
-            &:hover {
-              transform: scale(1.5);
-              transition: .3s;
-              perspective: 1000;
-              color:invert($fontColor,100%);
-            }
+
           }
         }
       }

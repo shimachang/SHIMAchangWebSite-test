@@ -72,8 +72,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
- //メールフォーム
+//一文字ずつアニメーション
+const animationTarget = document.querySelectorAll('.animationNode');
+for (let i = 0; i < animationTarget.length; i++) {
+  const target = animationTarget[i],
+        texts = target.textContent,
+        textsArray = [];
 
+  target.textContent = "";
+
+  for (let j = 0; j < texts.split("").length; j++) {
+    const txt = texts.split("")[j];
+    if (txt === " ") {
+      textsArray.push(" ")
+    } else {
+      textsArray.push('<span style="animation-delay: ' + (j * .1) + 's;">' + txt + '</span>')
+    }
+  }
+
+  for (let k = 0; k < textsArray.length; k++) {
+    target.innerHTML += textsArray[k]
+  }
+}
+
+ //メールフォーム
   const firebaseConfig = {
     apiKey: "AIzaSyBH46vXp84fifEdIN3C0Q03eQtR320BedM",
     authDomain: "shimachangwebsite-e91d1.firebaseapp.com",
@@ -264,16 +286,17 @@ $(window).on('scroll', function() {
   let docHeight = $(document).innerHeight();
   let winHeight = $(window).innerHeight();
   let bottom = docHeight - winHeight;
-  let bh = bottom <= $(window).scrollTop()
-  // console.log(bh)
-  if($(this).scrollTop() > 200 && bottom > $(window).scrollTop()) {
+
+  if($(this).scrollTop() > 200 ) {
     $('.topBtn').fadeIn();
-  } else if (bottom <= $(window).scrollTop()) {
+  }else {
     $('.topBtn').fadeOut();
-    console.log(bh)
   }
-  else {
-    $('.topBtn').fadeOut();
+//スクロール表示非表示
+  if(bottom <= $(window).scrollTop()) {
+    $('.scroll').fadeOut()
+  } else {
+    $('.scroll').fadeIn()
   }
 })
 $(document).on('click', '.topBtn', function() {
