@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "dev": "npm run webpack:dev && npm run webpack:server",
     "webpack:server": "npx webpack serve --config ./webpack.dev.js",
-    "prod": "npx rimraf ./public && npx webpack --config ./webpack.prod.js && npm run webpack:server",
+    "prod": "npx rimraf ./public && npx webpack --config ./webpack.prod.js",
     "cleanup": "npx rimraf ./public",
     "webpack:dev": "npx rimraf ./public && npx webpack --config ./webpack.dev.js",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'",

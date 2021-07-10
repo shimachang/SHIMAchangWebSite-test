@@ -4,8 +4,7 @@ import {
   faInstagram,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faYoutube, faInstagram, faTwitter, faArrowCircleUp);
+library.add(faYoutube, faInstagram, faTwitter);
 
 dom.watch();

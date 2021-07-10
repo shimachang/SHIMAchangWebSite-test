@@ -1,14 +1,34 @@
 @charset "utf-8";
-
 $color-primary: rgb(95, 158, 160);
 $color-second: rgb(141, 100, 100);
 $fontColor: #fff8dc;
+
+@mixin redLine() {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 1em;
+  background-color: rgb(163, 77, 61);
+  left: 0;
+  width: 4px;
+
+}
+@mixin cardBox($imgUrl) {
+  background-image: url($imgUrl);
+  display: inline-block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 90%;
+  background-size: contain;
+}
 
 * {
   margin: 0;
   padding: 0;
   body {
-    font-family: 'Josefin Sans','Yu Gothic',Arial, Helvetica, sans-serif;
+    font-family: 'Josefin Sans', 'Yu Gothic', 'Arial', 'Helvetica', 'sans-serif';
     ul {
       list-style: none;
     }
@@ -22,7 +42,7 @@ $fontColor: #fff8dc;
         opacity: 1;
       }
     }
-    .animationNode span{
+    .animationNode span {
       display: inline-block;
       animation: showText 1s backwards;
     }
@@ -193,6 +213,27 @@ $fontColor: #fff8dc;
         height: 80%;
         width: 200px;
         padding: 50px 0 100px 0;
+        ul {
+          display: none;
+        }
+        li a {
+          display: none;
+        }
+        .nav-sns {
+          display: none;
+          justify-content: space-between;
+          margin: 0 10px;
+          padding-top: 20%;
+          border-top: 1px solid black;
+          svg {
+            &:hover {
+              transform: scale(1.25);
+              transition: .3s;
+              perspective: 1000;
+              color:($color-second);
+            }
+          }
+        }
         &.active {
           z-index: 3;
           opacity: 1;
@@ -232,20 +273,8 @@ $fontColor: #fff8dc;
               }
             }
           }
-        }
-        .nav-sns {
-          display: flex;
-          justify-content: space-between;
-          margin: 0 10px;
-          padding-top: 20%;
-          border-top: 1px solid black;
-          svg {
-            &:hover {
-              transform: scale(1.25);
-              transition: .3s;
-              perspective: 1000;
-              color:($color-second);
-            }
+          .nav-sns {
+            display: flex;
           }
         }
       }
@@ -265,7 +294,7 @@ $fontColor: #fff8dc;
       bottom: 9em;
       z-index: 1;
       font-weight: normal;
-      display: inline-block;
+      display: none;
       font-size: 1em;
       line-height: 1;
       letter-spacing: .2em;
@@ -301,7 +330,7 @@ $fontColor: #fff8dc;
       }
     }
     .scroll {
-      display: inline-block;
+      display: none;
       position: fixed;
       left: 2em;
       bottom: 9em;
@@ -450,14 +479,9 @@ $fontColor: #fff8dc;
                 padding: 20px 0 0 30px;
                 position: relative;
                 &::before {
-                  position: absolute;
-                  display: inline-block;
-                  content: '';
-                  width: 4px;
-                  height: 1em;
+                  @include redLine();
                   top: 22px;
                   left: 22px;
-                  background-color: rgb(163, 77, 61);
                 }
               }
               p {
@@ -508,31 +532,13 @@ $fontColor: #fff8dc;
               width: 50%;
               position: relative;
               #imgGuitar {
-                background-image: url("../images/guitar.jpeg");
-                display: inline-block;
-                background-position: center center;
-                background-repeat: no-repeat;
-                width: 90%;
-                height: 90%;
-                background-size: contain;
+                @include cardBox("../images/guitar.jpeg");
               }
               #imgComposing {
-                background-image: url("../images/composing.jpeg");
-                display: inline-block;
-                background-position: center center;
-                background-repeat: no-repeat;
-                width: 90%;
-                height: 90%;
-                background-size: contain;
+                @include cardBox("../images/composing.jpeg")
               }
               #imgMixing {
-                background-image: url("../images/mixing.jpeg");
-                display: inline-block;
-                background-position: center center;
-                background-repeat: no-repeat;
-                width: 90%;
-                height: 90%;
-                background-size: contain;
+                @include cardBox("../images/mixing.jpeg")
               }
             }
             .cardText {
@@ -541,13 +547,7 @@ $fontColor: #fff8dc;
                 position: relative;
                 padding-left: 10px;
                 &::before {
-                  position: absolute;
-                  display: inline-block;
-                  content: '';
-                  left: 0;
-                  width: 4px;
-                  height: 21px;
-                  background-color: rgb(163, 77, 61);
+                  @include redLine();
                 }
               }
               h4 {
@@ -691,29 +691,13 @@ $fontColor: #fff8dc;
                 position: relative;
                 padding-left: 10px;
                 &::before {
-                  position: absolute;
-                  display: inline-block;
-                  content: '';
-                  left: 0;
-                  width: 4px;
-                  height: 1em;
-                  background-color: rgb(163, 77, 61);
+                  @include redLine();
                 }
               }
               .cardImage {
                 width: 100%;
                 height: 180px;
-                #imgGuitar {
-                  display: block;
-                  width: 100%;
-                  height: 100%;
-                }
-                #imgComposing {
-                  display: block;
-                  width: 100%;
-                  height: 100%;
-                }
-                #imgMixing {
+                #imgGuitar, #imgComposing, #imgMixing {
                   display: block;
                   width: 100%;
                   height: 100%;
@@ -756,12 +740,8 @@ $fontColor: #fff8dc;
         nav {
           top: 10vh;
           width: 25%;
-          ul {
-            li {
-              a {
-                font-size: 1.5em;
-              }
-            }
+          ul li a {
+            font-size: 1.5em;
           }
           .nav-sns {
             margin: 0 20%;
@@ -782,22 +762,22 @@ $fontColor: #fff8dc;
         }
       }
       .topBtn {
+        display: inline-block;
         svg {
           transform: scale(1.25);
         }
       }
-      .main {
-        .main-image {
-          #main-container {
-            display: block;
-            h1 {
-              font-size: 1.25em;
-              padding-top: 6%;
-            }
-            p {
-              font-size: 1em;
-            }
-          }
+      .scroll {
+        display: inline-block;
+      }
+      .main .main-image #main-container {
+        display: block;
+        h1 {
+          font-size: 1.25em;
+          padding-top: 6%;
+        }
+        p {
+          font-size: 1em;
         }
       }
 
@@ -888,7 +868,6 @@ $fontColor: #fff8dc;
             padding-top: 25px;
             padding-right: 10px;
             cursor: pointer;
-
           }
         }
       }
@@ -904,94 +883,67 @@ $fontColor: #fff8dc;
           transform: scale(1.5);
         }
       }
-      .main {
-        .main-image {
-          #main-container {
-            h1 {
-              padding-top: 0;
-              font-size: 2.5em;
-            }
-            p {
-              font-size: 2em;
-              letter-spacing: .5px;
-              margin-top: 10px;
-            }
-          }
+      .main .main-image #main-container {
+        h1 {
+          padding-top: 0;
+          font-size: 2.5em;
+        }
+        p {
+          font-size: 2em;
+          letter-spacing: .5px;
+          margin-top: 10px;
         }
       }
-      .bg-2 {
-        .second-container {
-          .content-left {
-            h2 {
-              font-size: 2.5em;
-            }
-            .tag {
-              font-size: 2.5em;
-              margin-top: 10%;
-              margin-bottom: 10%;
-            }
-            .contentWrap {
-              .textBox {
-                h3 {
-                  font-size: 1.75em;
-                }
-                p {
-                  font-size: 1.75em;
-                }
-              }
-            }
-          }
-          .content-right {
-            .imgBox {
-              height: 100%;
-            }
-          }
+      .bg-2 .second-container .content-left h2 {
+        font-size: 2.5em;
+      }
+      .tag {
+        font-size: 2.5em;
+        margin-top: 10%;
+        margin-bottom: 10%;
+      }
+      .contentWrap .textBox {
+        h3 {
+          font-size: 1.75em;
         }
-        #service {
-          .service-content {
-            margin: 0 10% 50px 0;
-            a {
-              h3 {
-                font-size: 1.6em;
-                padding-left: 10px;
-              }
-              .cardText {
-                p {
-                  font-size: 1.5em;
-                }
-              }
-            }
+        p {
+          font-size: 1.75em;
+        }
+      }
+    }
+    .content-right {
+      .imgBox {
+        height: 100%;
+      }
+    }
+  }
+  #service {
+    .service-content {
+      margin: 0 10% 50px 0;
+      a {
+        h3 {
+          font-size: 1.6em;
+          padding-left: 10px;
+        }
+        .cardText {
+          p {
+            font-size: 1.5em;
           }
         }
       }
     }
     @media (min-width: 1500px) {
-      header {
-        nav {
-          .nav-sns {
-            svg {
-              transform: scale(2);
-            }
-          }
-          ul {
-            li {
-              a {
-                font-size: 2.5em;
-              }
-            }
-          }
+      header nav .nav-sns {
+        svg {
+          transform: scale(2);
+        }
+        ul li a {
+          font-size: 2.5em;
         }
       }
-      .bg-2 {
-        .second-container {
-          .service-content {
-            .card {
-              .cardImage {
-                height: 250px;
-              }
-            }
-          }
-        }
+      .bg-2 .second-container .service-content .card
+      .cardImage {
+        height: 250px;
       }
     }
   }

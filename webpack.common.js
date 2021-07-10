@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlInjector = require('html-webpack-injector');
 
 module.exports = {
     entry: {
@@ -66,6 +65,5 @@ module.exports = {
         filename: 'price.html',
         inject: 'body'
       }),
-      // new HtmlInjector(),
     ]
   };

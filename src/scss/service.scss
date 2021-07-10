@@ -1,8 +1,26 @@
-
 @charset "utf-8";
+
 $color-primary: rgb(95, 158, 160);
 $color-second: rgb(141, 100, 100);
 $fontColor: rgb(255, 248, 220);
+
+@mixin redLine() {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 1em;
+  background-color: rgb(163, 77, 61);
+}
+@mixin underLine($width) {
+  position: absolute;
+  left: 25%;
+  height: 1px;
+  width: $width;
+  content: '';
+  display: block;
+  background: #000;
+}
 
 body {
   line-height: 1.25;
@@ -22,13 +40,7 @@ body {
       text-align: center;
       position: relative;
       &::after{
-        position: absolute;
-        left: 25%;
-        height: 1px;
-        width: 50%;
-        content: '';
-        display: block;
-        background: #000;
+        @include underLine(50%);
       }
       &.show {
         opacity: 1;
@@ -48,16 +60,11 @@ body {
         padding: 20px 0 20px 30px;
         position: relative;
         &::before {
-          position: absolute;
-          display: inline-block;
-          content: '';
+          @include redLine();
           top: 20px;
           left: 20px;
-          width: 4px;
-          height: 1.25em;
-          background-color: rgb(163, 77, 61);
         }
-        &::after{
+        &::after {
           margin-top: 10px;
           width: 90%;
           height: 1px;
@@ -79,23 +86,20 @@ body {
       &.show {
         opacity: 1;
       }
-      #ComposingPage {
-        background-image: url(../images/ComposingPage.jpg);
+      @mixin serviceImg($url) {
+        background-image: url($url);
         width: 100%;
         height: 100%;
         background-size: cover;
+      }
+      #ComposingPage {
+        @include serviceImg("../images/ComposingPage.jpg");
       }
       #GuitarPage {
-        background-image: url(../images/GuitarPage.jpg);
-        width: 100%;
-        height: 100%;
-        background-size: cover;
+        @include serviceImg("../images/GuitarPage.jpg");
       }
       #MixingPage {
-        background-image: url(../images/MixingPage.jpg);
-        width: 100%;
-        height: 100%;
-        background-size: cover;
+        @include serviceImg("../images/MixingPage.jpg")
       }
     }
 
@@ -112,13 +116,9 @@ body {
           padding-bottom: 1em;
           display: inline-block;
           &::before {
-            position: absolute;
-            content: '';
+            @include redLine();
             top: .1em;
             left: -7px;
-            width: 4px;
-            height: 1em;
-            background-color: rgb(163, 77, 61);
           }
         }
       }
@@ -178,14 +178,8 @@ body {
       padding: 20px;
       text-align: center;
       position: relative;
-      &::after{
-        position: absolute;
-        left: 25%;
-        height: 1px;
-        width: 50%;
-        content: '';
-        display: block;
-        background: #000;
+      &::after {
+        @include underLine(50%);
       }
       h1 {
         font-size: 1.75em;
@@ -205,13 +199,8 @@ body {
           left: .5em;
           padding-bottom: 10px;
           &::before {
-            position: absolute;
-            display: inline-block;
-            content: '';
+            @include redLine();
             left: -.5em;
-            width: 4px;
-            height: 1em;
-            background-color: rgb(163, 77, 61);
           }
         }
         input {
@@ -274,13 +263,13 @@ body {
       .modalBg {
         width: 100%;
         height: 100%;
-        background-color: rgba(30,30,30,0.9);
+        background-color: rgba(30, 30, 30, 0.9);
       }
       .modalWrapper {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform:translate(-50%,-50%);
+        transform:translate(-50%, -50%);
         width: 70%;
         max-width: 500px;
         padding: 10px 30px;
@@ -289,14 +278,8 @@ body {
           text-align: center;
           h2 {
             padding: 1em 0;
-            &::after{
-              position: absolute;
-              left: 25%;
-              height: 1px;
-              width: 50%;
-              content: '';
-              display: block;
-              background: #000;
+            &::after {
+              @include underLine(50%);
             }
           }
         }
@@ -344,13 +327,13 @@ body {
       #sendedBg {
         width: 100%;
         height: 100%;
-        background-color: rgba(30,30,30,0.9);
+        background-color: rgba(30, 30, 30, 0.9);
       }
       .sendedDisplay {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform:translate(-50%,-50%);
+        transform:translate(-50%, -50%);
         width: 60%;
         max-width: 400px;
         padding: 10px 30px;
@@ -379,71 +362,64 @@ body {
   }
 
   //タブレット表示
-
-  @media (min-width: 481px){
+  @media (min-width: 481px) {
     .servicePage {
       .image {
         height: 50vh;
       }
       table {
-          width: 481px;
-          margin: 5% auto;
-          caption {
-            text-align: left;
-            padding-left: 1em;
-            h2 {
-              position: relative;
-              &::after{
-                position: absolute;
-                height: 1px;
-                width: 100%;
-                content: '';
-                display: block;
-                background: #000;
-              }
+        width: 481px;
+        margin: 5% auto;
+        caption {
+          text-align: left;
+          padding-left: 1em;
+          h2 {
+            position: relative;
+            &::after {
+              @include underLine(100%);
+              left: 0;
             }
           }
-          thead {
-            display: table-header-group;
-            tr {
-              display: table-row;
-              padding: .35em;
-              th {
-                display: table-cell;
-                border-left: 1px solid white;
-              }
-              td {
-                display: table-cell;
-              }
-            }
-            .priceRow {
-              width: 20%;
-            }
-          }
-
-          th {
-            display: table-cell;
-            padding: 1em 10px 1em 1em;
-            font-size: .85em;
-            border-bottom: 1px solid white;
-          }
+        }
+        thead {
+          display: table-header-group;
           tr {
             display: table-row;
-          }
-          td {
-            display: table-cell;
-            border-left: 1px solid white;
-            padding: 1em;
-            &::before {
-              content: none;
+            padding: .35em;
+            th {
+              display: table-cell;
+              border-left: 1px solid white;
+            }
+            td {
+              display: table-cell;
             }
           }
+          .priceRow {
+            width: 20%;
+          }
+        }
+        th {
+          display: table-cell;
+          padding: 1em 10px 1em 1em;
+          font-size: .85em;
+          border-bottom: 1px solid white;
+        }
+        tr {
+          display: table-row;
+        }
+        td {
+          display: table-cell;
+          border-left: 1px solid white;
+          padding: 1em;
+          &::before {
+            content: none;
+          }
+        }
       }
     }
   }
 
   //デスクトップ表示
-
   @media (min-width: 769px){
     .servicePage {
       .title {
@@ -498,23 +474,21 @@ body {
         margin-top: 15vh;
         font-size: 3em;
       }
-      .contactForm {
-        .formWrap {
-          label {
-            font-size: 1.75em;
-          }
-          input {
-            font-size: 1.75em;
-          }
-          textarea {
-            font-size: 1.75em;
-          }
+      .contactForm .formWrap {
+        label {
+          font-size: 1.75em;
         }
-        button {
-          height: 100%;
-          width: 20%;
-          font-size: 2em;
+        input {
+          font-size: 1.75em;
         }
+        textarea {
+          font-size: 1.75em;
+        }
+      }
+      button {
+        height: 100%;
+        width: 20%;
+        font-size: 2em;
       }
       .modalArea {
         .modalWrapper {

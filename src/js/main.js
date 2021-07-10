@@ -16,59 +16,55 @@ document.addEventListener('click', (e) => {
   }
 });
 
-//背景画像スクロール
-  $(window).on('scroll', () => {
-    let scrollTop = $(window).scrollTop();
-    let bgPosition = scrollTop / 3.8;
-
-    if (bgPosition){
-      $('.main-image').css('background-position', 'center top -'+ bgPosition + 'px');
-    }
-  });
-
-//スクロールしたらmain-containerの表示非表示
-  window.addEventListener('scroll', () => {
-    const container = document.getElementById('main-container')
-    let scroll = document.documentElement.scrollTop;
-
-    if (scroll > 150) {
-      container.classList.add('hide');
-    } else if(scroll < 150){
-      container.classList.remove('hide');
-    }
-  });
-
 //ロード画面
 window.onload = () => {
   const loader = document.getElementById('loader-bg');
   loader.classList.add('loaded');
 }
 
-//トップページフェードイン
-window.addEventListener('scroll', () => {
-  const targetElement = document.querySelectorAll('.second-container');
-  for(let i = 0; i < targetElement.length; i++) {
-    const getElementDistance = targetElement[i].
-    getBoundingClientRect().top + targetElement[i].clientHeight * .6
-    if(window.innerHeight > getElementDistance) {
-      targetElement[i].classList.add('show');
-    } else if(window.innerHeight < getElementDistance) {
-      targetElement[i].classList.remove('show');
-    }
-  }
-});
+//スクロールしたらシリーズ
+$(window).on('scroll', () => {
 
-//他のページフェードイン
-window.addEventListener('scroll', () => {
+  //トップページフェードイン
+  const targetElement = document.querySelectorAll('.second-container');
+    for (let i = 0; i < targetElement.length; i++) {
+      const getElementDistance = targetElement[i].
+      getBoundingClientRect().top + targetElement[i].clientHeight * .6
+      if (window.innerHeight > getElementDistance) {
+        targetElement[i].classList.add('show');
+      } else if (window.innerHeight < getElementDistance) {
+        targetElement[i].classList.remove('show');
+      }
+    }
+
+  //他のページフェードイン
   const otherTargetElement = document.querySelectorAll('.content');
-  for(let i = 0; i < otherTargetElement.length; i++) {
+    for (let i = 0; i < otherTargetElement.length; i++) {
     const getElementDistance = otherTargetElement[i].
     getBoundingClientRect().top + otherTargetElement[i].clientHeight * .6
-    if(window.innerHeight > getElementDistance) {
+    if (window.innerHeight > getElementDistance) {
       otherTargetElement[i].classList.add('show');
-    } else if(window.innerHeight < getElementDistance) {
+    } else if (window.innerHeight < getElementDistance) {
       otherTargetElement[i].classList.remove('show');
     }
+  }
+
+  //main-containerの表示非表示
+  const container = document.getElementById('main-container')
+  let scroll = document.documentElement.scrollTop;
+
+  if (scroll > 150) {
+    container.classList.add('hide');
+  } else if (scroll < 150){
+    container.classList.remove('hide');
+  }
+
+  //背景画像パララックス
+  let scrollTop = $(window).scrollTop();
+  let bgPosition = scrollTop / 3.8;
+
+  if (bgPosition){
+    $('.main-image').css('background-position', 'center top -'+ bgPosition + 'px');
   }
 });
 
@@ -148,7 +144,7 @@ for (let i = 0; i < animationTarget.length; i++) {
   });
 
   //click modal
-  $(document).on('click', '#contactBtn',() => {
+  $(document).on('click', '#contactBtn', () => {
     const inputName = document.getElementById('inputName').value;
     const inputEmail = document.getElementById('inputEmail').value;
     const inputMessage = document.getElementById('inputMessage').value;
@@ -172,15 +168,15 @@ for (let i = 0; i < animationTarget.length; i++) {
 
   $(document).on('click', '#closeModal, #modalBg', () => {
     $('#modalArea').fadeOut();
-  })
+  });
   $(document).on('click', '#close, #sendedBg', () => {
     $('#sendedArea').fadeOut();
-  })
+  });
 
-  //barba
+//barba
 import barba from '@barba/core';
 import barbaCss from '@barba/css';
-barba.use(barbaCss)
+barba.use(barbaCss);
 
 // titleタグ以外のmetaタグの情報の書き換えを行う
 const replaceHeadTags = target => {
@@ -189,17 +185,8 @@ const replaceHeadTags = target => {
   const newPageHead = document.createElement('head');
   newPageHead.innerHTML = targetHead;
   const removeHeadTags = [
-    "meta[name='keywords']",
-    "meta[name='description']",
-    "meta[property^='fb']",
     "meta[property^='og']",
     "meta[name^='twitter']",
-    "meta[name='robots']",
-    'meta[itemprop]',
-    'link[itemprop]',
-    "link[rel='prev']",
-    "link[rel='next']",
-    "link[rel='canonical']",
   ].join(',');
   const headTags = [...head.querySelectorAll(removeHeadTags)];
   headTags.forEach(item => {
@@ -269,37 +256,44 @@ links.forEach(link => {
 })
 
  //アンカーリンク
-if($('a[href^="#"]').length) {
-    $(document).on('click', 'a[href^="#"]', function(){
+if ($('a[href^="#"]').length) {
+    $(document).on('click', 'a[href^="#"]', () => {
     var adjust = -80;
     var speed = 400;
     let height = $('#contactAnchor').offset().top + adjust
     $('body,html').animate({scrollTop:height}, speed, 'swing');
-    console.log(height);
     return false;
   })
 };
 
 //トップへ戻るボタン
-$('.topBtn').hide();
-$(window).on('scroll', function() {
-  let docHeight = $(document).innerHeight();
-  let winHeight = $(window).innerHeight();
-  let bottom = docHeight - winHeight;
+$(window).on('load resize', function() {
 
-  if($(this).scrollTop() > 200 ) {
-    $('.topBtn').fadeIn();
-  }else {
-    $('.topBtn').fadeOut();
-  }
-//スクロール表示非表示
-  if(bottom <= $(window).scrollTop()) {
-    $('.scroll').fadeOut()
-  } else {
-    $('.scroll').fadeIn()
+  const wid = $(window).width();
+  if (wid >= 769) {
+    $('.topBtn').hide();
+    $(window).on('scroll', () => {
+      let docHeight = $(document).innerHeight();
+      let winHeight = $(window).innerHeight();
+      let bottom = docHeight - winHeight;
+      if ($(this).scrollTop() > 200 ) {
+        $('.topBtn').fadeIn();
+      } else {
+        $('.topBtn').fadeOut();
+      }
+      //スクロール表示非表示
+      if (bottom <= $(window).scrollTop()) {
+        $('.scroll').fadeOut();
+      } else {
+        $('.scroll').fadeIn();
+      }
+    })
+  } else if (wid < 769) {
+    $('.topBtn').hide();
+    $('.scroll').hide();
   }
 })
-$(document).on('click', '.topBtn', function() {
+$(document).on('click', '.topBtn', () => {
   $('body,html').animate({
     scrollTop: 0
   }, 500)
