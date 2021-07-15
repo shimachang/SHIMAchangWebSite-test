@@ -62,7 +62,9 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "core-js": "^3.11.0",
     "file-loader": "^6.2.0",
+    "firebase": "^8.7.1",
     "html-webpack-injector": "^1.1.4",
+    "intersection-observer": "^0.12.0",
     "regenerator-runtime": "^0.13.7"
   },
   "husky": {
