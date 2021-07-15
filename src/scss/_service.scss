@@ -1,0 +1,512 @@
+@charset "utf-8";
+@import './_variable';
+
+
+body {
+  line-height: 1.25;
+  box-sizing: border-box;
+}
+.main-container {
+  display: none;
+}
+.servicePage {
+  background-color: white;
+  .title {
+    opacity: 0;
+    transition: 1s;
+    margin: 80px 0 30px 0;
+    font-size: 1.25em;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    &::after{
+      @include underLine(50%);
+    }
+    &.show {
+      opacity: 1;
+    }
+  }
+  .content {
+    background-color: rgba($color-primary, .9);
+    margin: 20px 0 10px 0;
+    opacity: 0;
+    transition: .5s;
+    transform: translateY(50px);
+      &.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    h2 {
+      padding: 20px 0 20px 30px;
+      position: relative;
+      &::before {
+        @include redLine();
+        top: 20px;
+        left: 20px;
+      }
+      &::after {
+        margin-top: 10px;
+        width: 90%;
+        height: 1px;
+        content: '';
+        display: block;
+        background: #000;
+      }
+    }
+    p {
+      text-align: left;
+      padding: 20px;
+    }
+  }
+  .image {
+    width: 100%;
+    height: 250px;
+    opacity: 0;
+    transition: 1s;
+    &.show {
+      opacity: 1;
+    }
+
+    .ComposingPage {
+      @include serviceImg("../images/ComposingPage.jpg");
+    }
+    .GuitarPage {
+      @include serviceImg("../images/GuitarPage.jpg");
+    }
+    .MixingPage {
+      @include serviceImg("../images/MixingPage.jpg")
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 10%;
+    caption {
+      h2 {
+        color: black;
+        font-size: 1.5em;
+        position: relative;
+        margin-top: 2em;
+        padding-bottom: 1em;
+        display: inline-block;
+        &::before {
+          @include redLine();
+          top: .1em;
+          left: -7px;
+        }
+      }
+    }
+    th {
+      background-color: $color-primary;
+      color: $fontColor;
+      display: block;
+      border-right: none;
+    }
+    tr {
+      display: block;
+      margin-bottom: .625em;
+    }
+    td {
+      border-bottom: 1px solid white;
+      display: block;
+      font-size: .8em;
+      position: relative;
+      padding: .625em .625em .625em 4em;
+      &::before {
+        content: attr(data-label);
+        font-weight: bold;
+        position: absolute;
+        left: 10px;
+      }
+    }
+    thead {
+      display: none;
+      tr {
+        border-bottom: 2px solid white;
+        display: block;
+        width: 100%;
+      }
+      .non{
+        width: 25%;
+        background: white;
+      }
+    }
+    tbody {
+      .txt {
+        font-size: .85em;
+        background: lighten($color-primary, 15%);
+      }
+      .price {
+        background: lighten($color-primary, 15%);
+        text-align: right;
+      }
+    }
+  }
+  .attention {
+    font-size: .5em;
+  }
+}
+.contactPage {
+  width: 100%;
+  background-color: white;
+  .title {
+    margin: 80px 0 30px 0;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    &::after {
+      @include underLine(50%);
+    }
+    h1 {
+      font-size: 1.75em;
+    }
+  }
+  .contactForm {
+    width: 80%;
+    padding: 1em 0;
+    margin: 5% auto;
+    .formWrap {
+      width: 80%;
+      margin: 0 auto 20px;
+      padding-bottom: 20px;
+      label {
+        display: flex;
+        position: relative;
+        left: .5em;
+        padding-bottom: 10px;
+        &::before {
+          @include redLine();
+          left: -.5em;
+        }
+      }
+      input {
+        width: 80%;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid black;
+        &:focus {
+          border-bottom: none;
+        }
+        &:focus + span {
+          border: none;
+          width: 80%;
+          display: block;
+          transform: scaleX(1);
+          transition: .4s;
+          border-bottom: 2px solid $color-primary;
+        }
+      }
+      textarea {
+        width: 100%;
+        &:focus {
+          outline: none;
+          transform: scaleX(1);
+          transition: .6s;
+          border: 2px solid $color-primary;
+        }
+      }
+      span {
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        border: 1px solid $color-primary;
+      }
+      .helperText {
+        color: tomato;
+      }
+    }
+    button {
+      height: 50px;
+      width: 200px;
+      font-size: 1.25em;
+      display: block;
+      margin: 0 auto 50px;
+      border: none;
+      border-radius: 5px;
+      background: $color-primary;
+      color: $fontColor;
+      transition: .3s;
+      &:hover {
+        background: lighten($color-primary, 20%);
+      }
+      &:disabled {
+        background-color: rgb(193, 193, 193);
+      }
+    }
+  }
+  .modalArea {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .modalBg {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(30, 30, 30, 0.9);
+    }
+    .modalWrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%, -50%);
+      width: 70%;
+      max-width: 500px;
+      padding: 10px 30px;
+      background-color: #fff;
+      .modal-header {
+        text-align: center;
+        h2 {
+          padding: 1em 0;
+          &::after {
+            @include underLine(50%);
+          }
+        }
+      }
+      p {
+        padding: 10px 0;
+      }
+      .message {
+        background: rgb(249, 249, 249);
+        max-height: 250px;
+        overflow: auto;
+        white-space: pre-wrap;
+      }
+      .modal-footer {
+        padding: 20px 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        button {
+          width: 45%;
+          border: none;
+          line-height: 2em;
+          border-radius: 3px;
+          color: $fontColor;
+          background: $color-primary;
+          &:hover {
+            background: lighten($color-primary, 20%);
+          }
+        }
+      }
+    }
+    .closeModal {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+  }
+  .sendedArea {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .sendedBg {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(30, 30, 30, 0.9);
+    }
+    .sendedDisplay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%, -50%);
+      width: 60%;
+      max-width: 400px;
+      padding: 10px 30px;
+      background-color: #fff;
+      text-align: center;
+      h3 {
+        font-weight: normal;
+        line-height: 100px;
+      }
+      button {
+        height: 50px;
+        width: 100px;
+        font-size: 1.25em;
+        display: block;
+        margin: 0 auto 50px;
+        border: none;
+        border-radius: 5px;
+        background: $color-primary;
+        color: $fontColor;
+        &:hover {
+          background: lighten($color-primary, 20%);
+        }
+      }
+    }
+  }
+}
+
+//タブレット表示
+@media (min-width: 481px) {
+  .servicePage {
+    .image {
+      height: 50vh;
+    }
+    table {
+      width: 481px;
+      margin: 5% auto;
+      caption {
+        text-align: left;
+        padding-left: 1em;
+        h2 {
+          position: relative;
+          padding-left: .1em;
+        }
+      }
+      thead {
+        display: table-header-group;
+        tr {
+          display: table-row;
+          padding: .35em;
+          th {
+            display: table-cell;
+            border-left: 1px solid white;
+          }
+          td {
+            display: table-cell;
+          }
+        }
+        .priceRow {
+          width: 20%;
+        }
+      }
+      th {
+        display: table-cell;
+        padding: 1em 10px 1em 1em;
+        font-size: .85em;
+        border-bottom: 1px solid white;
+      }
+      tr {
+        display: table-row;
+      }
+      td {
+        display: table-cell;
+        border-left: 1px solid white;
+        padding: 1em;
+        &::before {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+//デスクトップ表示
+@media (min-width: 769px){
+  .servicePage {
+    .title {
+      margin-top: 15vh;
+      font-size: 2em;
+    }
+    .image {
+      width: 80%;
+      margin: 50px auto;
+    }
+    .content {
+      width: 80%;
+      margin: 50px auto;
+      h2 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1.75em;
+      }
+    }
+    table {
+      width: 60%;
+      th {
+        font-size: 2em;
+      }
+      td {
+        font-size: 1.75em;
+      }
+      caption {
+        h2 {
+          font-size: 3em;
+        }
+      }
+      thead {
+        .priceRow {
+          width: 16%;
+        }
+      }
+      tbody {
+        .txt {
+          font-size: 2em;
+        }
+      }
+    }
+    .attention {
+      font-size: 1em;
+      padding: 20px;
+    }
+  }
+  .contactPage {
+    .title {
+      margin-top: 15vh;
+      font-size: 3em;
+    }
+    .contactForm .formWrap {
+      label {
+        font-size: 1.75em;
+      }
+      input {
+        font-size: 1.75em;
+      }
+      textarea {
+        font-size: 1.75em;
+      }
+    }
+    button {
+      height: 100%;
+      width: 20%;
+      font-size: 2em;
+    }
+    .modalArea {
+      .modalWrapper {
+        max-width: 800px;
+        h2 {
+          font-size: 3em;
+        }
+        h3 {
+          font-size: 1.75em;
+        }
+        p {
+          font-size: 1.5em;
+        }
+        .modal-footer {
+          button {
+            height: 100%;
+            width: 40%;
+            font-size: 2em;
+          }
+        }
+      }
+    }
+    .sendedArea {
+      .sendedDisplay {
+        padding: 3% 5%;
+        h3 {
+          font-size: 2em;
+        }
+        button {
+          height: 100%;
+          width: 40%;
+          font-size: 2em;
+        }
+      }
+    }
+  }
+}
+

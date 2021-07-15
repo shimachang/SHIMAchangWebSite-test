@@ -11,7 +11,6 @@
       gtag('js', new Date());
       gtag('config', 'G-WK9GR62C5Y');
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2CArray.prototype.find%2CIntersectionObserver" crossorigin="anonymous" defer></script>
     <meta property="og:url" content="https://shimachangwebsite-e91d1.web.app/"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="トップページ"/>
@@ -24,8 +23,8 @@
   </head>
   <body>
     <div data-barba="wrapper">
-      <div id="loader-bg">
-        <div id="loader">
+      <div id="loader-bg" class="loader-bg">
+        <div id="loader" class="loader">
           <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -55,7 +54,7 @@
             <a href="https://twitter.com/shimachanggg" target="_blank">
               <i class="fab fa-twitter fa-2x"></i>
             </a>
-            <a href="https://www.instagram.com/shimachanggg">
+            <a href="https://www.instagram.com/shimachanggg" target="_blank">
               <i class="fab fa-instagram fa-2x"></i>
             </a>
             <a href="https://www.youtube.com/channel/UC24Kq3_eLek76qc_fKqtgsQ" target="_blank">
@@ -69,7 +68,7 @@
       <div data-barba="container" data-barba-namespace="top">
         <div class="main">
           <div class="main-image">
-            <div id="main-container">
+            <div class="main-container" id="main-container">
               <h1 class="animationNode">一緒に音楽しませんか？</h1>
               <p class="animationNode">Would you like to play music with us?</p>
             </div>
@@ -96,7 +95,7 @@
             </div>
             <div class="content-right">
               <div class="imgBox">
-                <div class="img" id="img-policy"></div>
+                <div class="img-policy"></div>
               </div>
             </div>
           </div>
@@ -115,7 +114,7 @@
               <a href="./guitar.html" class="card">
                 <h3 class="tb-pc-text">Guitar</h3>
                 <div class="cardImage">
-                  <div id="imgGuitar"></div>
+                  <div class="imgGuitar"></div>
                 </div>
                 <div class="cardText">
                   <h3 class="sp-text">Guitar</h3>
@@ -127,7 +126,7 @@
               <a href="./composing.html" class="card">
                 <h3 class="tb-pc-text">Composing</h3>
                 <div class="cardImage">
-                  <div cladd="cardImageBox" id="imgComposing"></div>
+                  <div class="imgComposing"></div>
                 </div>
                 <div class="cardText">
                   <h3 class="sp-text">Composing</h3>
@@ -139,7 +138,7 @@
               <a href="./mixing.html" class="card">
                 <h3 class="tb-pc-text">Mixing</h3>
                 <div class="cardImage">
-                  <div cladd="cardImageBox" id="imgMixing"></div>
+                  <div class="imgMixing"></div>
                 </div>
                 <div class="cardText">
                   <h3 class="sp-text">Mixing</h3>
@@ -175,7 +174,7 @@
             </div>
             <div class="content-right">
               <div class="imgBox">
-                <div class="img" id="img-history"></div>
+                <div class="img-history"></div>
               </div>
             </div>
           </div>
@@ -202,23 +201,27 @@
           </div>
           <form class="contactForm">
             <div class="formWrap">
-              <label for="inputName">お名前</label>
+              <label for="inputName"class="inputName">お名前</label>
               <input type="text" id="inputName">
               <span></span>
+              <p class="helperText name"></p>
             </div>
             <div class="formWrap">
               <label for="inputEmail">メールアドレス</label>
               <input type="email" id="inputEmail">
               <span></span>
+              <p class="helperText email"></p>
             </div>
             <div class="formWrap">
               <label for="inputConfirm">メールアドレス（確認）</label>
               <input type="email" id="inputConfirm">
               <span></span>
+              <p class="helperText confirm"></p>
             </div>
             <div class="formWrap">
               <label for="inputMessage">お問い合わせ内容</label>
               <textarea name="" id="inputMessage" cols="30" rows="10"></textarea>
+              <p class="helperText message"></p>
             </div>
             <button class="confirmBtn" type="submit">確認</button>
           </form>
@@ -239,15 +242,12 @@
                 <button id="contactBtn">送信</button>
               </div>
             </div>
-            <div id="closeModal" class="closeModal">
-              ×
-            </div>
           </section>
-          <section id="sendedArea">
-            <div id="sendedBg"></div>
+          <section class="sendedArea" id="sendedArea">
+            <div class="sendedBg" id="sendedBg"></div>
             <div class="sendedDisplay">
               <h3>送信完了しました</h3>
-              <button id="close">OK</button>
+              <button class="close" id="close">OK</button>
             </div>
           </section>
         </div>
@@ -256,7 +256,7 @@
             <a href="https://twitter.com/shimachanggg" target="_blank">
               <i class="fab fa-twitter fa-2x"></i>
             </a>
-            <a href="https://www.instagram.com/shimachanggg">
+            <a href="https://www.instagram.com/shimachanggg" target="_blank">
               <i class="fab fa-instagram fa-2x"></i>
             </a>
             <a href="https://www.youtube.com/channel/UC24Kq3_eLek76qc_fKqtgsQ" target="_blank">
@@ -264,13 +264,8 @@
             </a>
           </div>
         </footer>
-        <div class="copyright">
-          <p>©︎ Copyriget 2021 SHIMAchang All right reserved</p>
-        </div>
+        <div class="copyright"></div>
       </div>
-      <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
     </div>
   </body>
 </html>

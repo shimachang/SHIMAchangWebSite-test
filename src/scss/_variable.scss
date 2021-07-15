@@ -1,0 +1,38 @@
+$color-primary: rgb(95, 158, 160);
+$color-second: rgb(141, 100, 100);
+$fontColor: rgb(255, 248, 220);
+
+@mixin redLine() {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 1em;
+  background-color: rgb(163, 77, 61);
+  left: 0;
+  width: 4px;
+}
+@mixin underLine($width) {
+  position: absolute;
+  left: 25%;
+  height: 1px;
+  width: $width;
+  content: '';
+  display: block;
+  background: #000;
+}
+@mixin serviceImg($url) {
+  background-image: url($url);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+@mixin cardBox($imgUrl) {
+  background-image: url($imgUrl);
+  display: inline-block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 90%;
+  background-size: contain;
+}
