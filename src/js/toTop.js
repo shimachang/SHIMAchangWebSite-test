@@ -1,27 +1,30 @@
-//トップへ戻るボタン
 $(window).on('load resize', function () {
   const wid = $(window).width();
-  if(wid >= 769) {
-    $('.topBtn').hide();
+  const $topBtn = $('.topBtn');
+  const $scroll = $('.scroll');
+
+  if (wid >= 769) {
+    $topBtn.hide();
     $(window).on('scroll', () => {
       const docHeight = $(document).innerHeight();
       const winHeight = $(window).innerHeight();
       const bottom = docHeight - winHeight;
-      if($(this).scrollTop() > 200) {
-        $('.topBtn').fadeIn();
+
+      if ($(this).scrollTop() > 200) {
+        $topBtn.fadeIn();
       } else {
-        $('.topBtn').fadeOut();
+        $topBtn.fadeOut();
       }
       //スクロール表示非表示
-      if(bottom <= $(window).scrollTop()) {
-        $('.scroll').fadeOut();
+      if (bottom <= $(window).scrollTop()) {
+        $scroll.fadeOut();
       } else {
-        $('.scroll').fadeIn();
+        $scroll.fadeIn();
       }
     });
-  } else if(wid < 769) {
-    $('.topBtn').hide();
-    $('.scroll').hide();
+  } else if (wid < 769) {
+    $topBtn.hide();
+    $scroll.hide();
   }
 });
 $(document).on('click', '.topBtn', () => {

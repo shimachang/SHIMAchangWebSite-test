@@ -1,19 +1,36 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es2017": true
   },
   "extends": [
     "eslint:recommended",
     "prettier"
   ],
   "parser": "babel-eslint",
-  "parserOptions": {
-  "sourceType": "module"
+  "globals": {
+    "jQuery": "readonly",
+    "$": "readonly"
   },
   "root": true,
+  "plugins": ["prettier"],
   "rules": {
     "no-undef": ["off"],
-    "no-unused-vars": "off"
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 140,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "arrowParens": "always"
+      }
+    ]
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

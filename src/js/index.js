@@ -5,7 +5,7 @@ import './barba';
 import './firebase';
 import './toTop';
 import 'intersection-observer';
-import './hamberger';
+import './hamburger';
 import './scroll';
 import './loader';
-import './copyright'
+import './copyright';

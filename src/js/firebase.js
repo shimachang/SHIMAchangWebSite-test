@@ -21,34 +21,23 @@ const db = firestore.collection('formData');
 const confirmBtn = document.querySelector('.contactForm');
 
 //Click Contactform
-const emailValue = $('#inputEmail').val();
-const nameValue = $('#inputName').val();
-const messageValue = $('#inputMessage').val();
-const confirmValue = $('#inputConfirm').val();
 
-$(function() {
-  $('.confirmBtn').prop("disabled", true);
+$(function () {
+  const $confirmBtn = $('.confirmBtn');
 
-  //入力欄の操作時
-  $('.contactForm').on('change', function() {
-      //必須項目が空かどうかフラグ
-      let flag = true;
-      //必須項目をひとつずつチェック
-      $('.contactForm input textarea').each(function(e) {
-          //もし必須項目が空なら
-          if ($('.contactForm input textarea').eq(e).val() === "") {
-              flag = false;
-          }
-      });
-      //全て埋まっていたら
-      if (flag) {
-          //送信ボタンを復活
-          $('.confirmBtn').prop("disabled", false);
-      }
-      else {
-          //送信ボタンを閉じる
-          $('.confirmBtn').prop("disabled", true);
-      }
+  $confirmBtn.prop('disabled', true);
+
+  $('.contactForm input, .contactForm textarea').on('keyup', function () {
+    const emailValue = $('#inputEmail').val();
+    const nameValue = $('#inputName').val();
+    const messageValue = $('#inputMessage').val();
+    const confirmValue = $('#inputConfirm').val();
+
+    if (emailValue && confirmValue && nameValue && messageValue !== '') {
+      $confirmBtn.prop('disabled', false);
+    } else {
+      $confirmBtn.prop('disabled', true);
+    }
   });
 });
 
@@ -69,7 +58,7 @@ $(document).on('submit', '.contactForm', (e) => {
   if (!emailValue) {
     $('.helperText' + '.email').text('メールアドレスを入力して下さい');
   }
-  if (!emailValue !== confirmValue) {
+  if (emailValue !== confirmValue) {
     $('.helperText' + '.confirm').text('メールアドレスを確認して下さい');
   }
   if (!messageValue) {
@@ -77,8 +66,8 @@ $(document).on('submit', '.contactForm', (e) => {
   }
   if (emailValue === confirmValue && nameValue && messageValue) {
     $('#modalArea').fadeIn();
+    $('.helperText').text('');
   }
-
 });
 
 //click modal

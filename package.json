@@ -11,7 +11,19 @@
     "cleanup": "npx rimraf ./public",
     "webpack:dev": "npx rimraf ./public && npx webpack --config ./webpack.dev.js",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'",
-    "build": "npx webpack --config ./webpack.dev.js"
+    "build": "npx webpack --config ./webpack.dev.js",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -60,21 +72,13 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "babel-preset-minify": "^0.5.1",
     "core-js": "^3.11.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "file-loader": "^6.2.0",
     "firebase": "^8.7.1",
     "html-webpack-injector": "^1.1.4",
     "intersection-observer": "^0.12.0",
     "regenerator-runtime": "^0.13.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js.ts}": [
-      "npm run lint-fix"
-    ]
   }
 }

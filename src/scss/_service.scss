@@ -1,7 +1,6 @@
 @charset "utf-8";
 @import './_variable';
 
-
 body {
   line-height: 1.25;
   box-sizing: border-box;
@@ -20,7 +19,7 @@ body {
     padding: 20px;
     text-align: center;
     position: relative;
-    &::after{
+    &::after {
       @include underLine(50%);
     }
     &.show {
@@ -28,15 +27,15 @@ body {
     }
   }
   .content {
-    background-color: rgba($color-primary, .9);
+    background-color: rgba($color-primary, 0.9);
     margin: 20px 0 10px 0;
     opacity: 0;
-    transition: .5s;
+    transition: 0.5s;
     transform: translateY(50px);
-      &.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    &.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
     h2 {
       padding: 20px 0 20px 30px;
       position: relative;
@@ -69,13 +68,13 @@ body {
     }
 
     .ComposingPage {
-      @include serviceImg("../images/ComposingPage.jpg");
+      @include serviceImg('../images/ComposingPage.jpg');
     }
     .GuitarPage {
-      @include serviceImg("../images/GuitarPage.jpg");
+      @include serviceImg('../images/GuitarPage.jpg');
     }
     .MixingPage {
-      @include serviceImg("../images/MixingPage.jpg")
+      @include serviceImg('../images/MixingPage.jpg');
     }
   }
 
@@ -94,7 +93,7 @@ body {
         display: inline-block;
         &::before {
           @include redLine();
-          top: .1em;
+          top: 0.1em;
           left: -7px;
         }
       }
@@ -107,14 +106,14 @@ body {
     }
     tr {
       display: block;
-      margin-bottom: .625em;
+      margin-bottom: 0.625em;
     }
     td {
       border-bottom: 1px solid white;
       display: block;
-      font-size: .8em;
+      font-size: 0.8em;
       position: relative;
-      padding: .625em .625em .625em 4em;
+      padding: 0.625em 0.625em 0.625em 4em;
       &::before {
         content: attr(data-label);
         font-weight: bold;
@@ -129,14 +128,14 @@ body {
         display: block;
         width: 100%;
       }
-      .non{
+      .non {
         width: 25%;
         background: white;
       }
     }
     tbody {
       .txt {
-        font-size: .85em;
+        font-size: 0.85em;
         background: lighten($color-primary, 15%);
       }
       .price {
@@ -146,7 +145,7 @@ body {
     }
   }
   .attention {
-    font-size: .5em;
+    font-size: 0.5em;
   }
 }
 .contactPage {
@@ -173,47 +172,51 @@ body {
       width: 80%;
       margin: 0 auto 20px;
       padding-bottom: 20px;
+      position: relative;
       label {
         display: flex;
         position: relative;
-        left: .5em;
+        left: 0.5em;
         padding-bottom: 10px;
         &::before {
           @include redLine();
-          left: -.5em;
+          left: -0.5em;
         }
       }
       input {
         width: 80%;
-        outline: none;
         border: none;
         border-bottom: 1px solid black;
+        cursor: pointer;
         &:focus {
+          outline: none;
           border-bottom: none;
         }
         &:focus + span {
+          position: absolute;
           border: none;
           width: 80%;
-          display: block;
+          bottom: 1em;
+          left: 0;
           transform: scaleX(1);
-          transition: .4s;
-          border-bottom: 2px solid $color-primary;
-        }
-      }
-      textarea {
-        width: 100%;
-        &:focus {
-          outline: none;
-          transform: scaleX(1);
-          transition: .6s;
-          border: 2px solid $color-primary;
+          transition: 0.4s;
+          border-bottom: 1px solid $color-primary;
         }
       }
       span {
-        width: 100%;
         height: 2px;
         transform: scaleX(0);
         border: 1px solid $color-primary;
+      }
+      textarea {
+        width: 100%;
+        cursor: pointer;
+        outline: 1px solid black;
+        transition: 0.2s;
+        border: none;
+        &:focus {
+          outline: 2px solid $color-primary;
+        }
       }
       .helperText {
         color: tomato;
@@ -229,7 +232,7 @@ body {
       border-radius: 5px;
       background: $color-primary;
       color: $fontColor;
-      transition: .3s;
+      transition: 0.3s;
       &:hover {
         background: lighten($color-primary, 20%);
       }
@@ -255,7 +258,7 @@ body {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform:translate(-50%, -50%);
+      transform: translate(-50%, -50%);
       width: 70%;
       max-width: 500px;
       padding: 10px 30px;
@@ -319,7 +322,7 @@ body {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform:translate(-50%, -50%);
+      transform: translate(-50%, -50%);
       width: 60%;
       max-width: 400px;
       padding: 10px 30px;
@@ -361,14 +364,14 @@ body {
         padding-left: 1em;
         h2 {
           position: relative;
-          padding-left: .1em;
+          padding-left: 0.1em;
         }
       }
       thead {
         display: table-header-group;
         tr {
           display: table-row;
-          padding: .35em;
+          padding: 0.35em;
           th {
             display: table-cell;
             border-left: 1px solid white;
@@ -384,7 +387,7 @@ body {
       th {
         display: table-cell;
         padding: 1em 10px 1em 1em;
-        font-size: .85em;
+        font-size: 0.85em;
         border-bottom: 1px solid white;
       }
       tr {
@@ -403,7 +406,7 @@ body {
 }
 
 //デスクトップ表示
-@media (min-width: 769px){
+@media (min-width: 769px) {
   .servicePage {
     .title {
       margin-top: 15vh;
@@ -426,7 +429,7 @@ body {
     table {
       width: 60%;
       th {
-        font-size: 2em;
+        font-size: 1.75em;
       }
       td {
         font-size: 1.75em;
@@ -509,4 +512,3 @@ body {
     }
   }
 }
-

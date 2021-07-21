@@ -1,4 +1,4 @@
-if($('a[href^="#"]').length) {
+if ($('a[href^="#"]').length) {
   $(document).on('click', 'a[href^="#"]', () => {
     const ADJUST = -80;
     const SPEED = 400;

@@ -28,20 +28,32 @@ const gaPush = () => {
   }
 };
 
+// const $mask = $('.barbaMask');
+
 barba.init({
   sync: true,
   transitions: [
     {
       async leave() {
-        const done = this.async();
         leaveAnimation();
         pageTransition();
-        await delay(1000);
-        done();
+        await delay(100);
       },
-      beforeEnter({ next }) {
-        replaceHeadTags(next);
+      //TODO: 採用検討中
+      // async afterLeave() {
+      //   $mask.addClass('active');
+      //   await new Promise(resolve => {
+      //     return setTimeout(resolve, 100);
+      //   });
+      // },
+      // afterEnter() {
+      //   $mask.removeClass('active');
+      // },
+      afterLeave() {
         $('html, body').scrollTop(0);
+      },
+      enter({ next }) {
+        replaceHeadTags(next);
         gaPush();
       },
     },
@@ -76,6 +88,9 @@ links.forEach((link) => {
     'click',
     (e) => {
       eventDelete(e);
+      if ($('#menuButton, #nav, #mask').hasClass('active')) {
+        $('#menuButton, #nav, #mask').removeClass('active');
+      }
     },
     false
   );

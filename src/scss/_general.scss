@@ -108,7 +108,32 @@ ul {
     visibility: visible;
     transform: none;
   }
+  $ease-cubic-bezier: cubic-bezier(.165, .84, .44, 1);
+//TODO: 採用検討中
 
+// .barbaMask {
+//   position: fixed;
+//   z-index: 4;
+//   top: 0;
+//   left: 0;
+//   display: block;
+//   visibility: hidden;
+//   width: 100%;
+//   height: 100%;
+//   transition: transform .5s $ease-cubic-bezier;
+//   transition-property: transform, visibility;
+//   transform: rotateY(90deg);
+//   transform-origin: right;
+//   pointer-events: none;
+//   background-color: $color-primary;
+
+//   &.active{
+//     visibility: visible;
+//     transform: rotateY(0deg);
+//     transform-origin: left;
+//     pointer-events: auto;
+//   }
+// }
   header {
     position: fixed;
     display: flex;
@@ -196,7 +221,6 @@ ul {
       li a {
         display: none;
       }
-
       &.active {
         z-index: 3;
         opacity: 1;
@@ -361,8 +385,6 @@ ul {
       width: 100vw;
       min-height: 130vh;
       background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       background-image: url(../images/IMG_5927.png);
       .main-container {
         position: absolute;
@@ -468,38 +490,29 @@ ul {
           }
         }
       }
-      .content-right {
-        .imgBox {
-          width: 100%;
-          height: 300px;
-          opacity: 0;
-          transform: translateY(50px);
+      .imgBox {
+        width: 100%;
+        height: 300px;
+        opacity: 0;
+        transform: translateY(50px);
+        visibility: hidden;
+        transition: 1s;
+        perspective: 1000;
+        .img-policy {
+          transform: translateY(-30%);
           visibility: hidden;
-          transition: 1s;
-          perspective: 1000;
-          // .img {
-          //   transform: translateY(-30%);
-          //   visibility: hidden;
-          //   width: 100%;
-          //   height: 100%;
-          //   background-size: cover;
-          // }
-          .img-policy {
-            transform: translateY(-30%);
-            visibility: hidden;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-image: url("../images/img-policy.jpeg");
-          }
-          .img-history {
-            transform: translateY(-30%);
-            visibility: hidden;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-image: url("../images/img-history.jpg");
-          }
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-image: url("../images/img-policy.jpeg");
+        }
+        .img-history {
+          transform: translateY(-30%);
+          visibility: hidden;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-image: url("../images/img-history.jpg");
         }
       }
       .service-content {
@@ -908,10 +921,8 @@ ul {
       }
     }
   }
-  .content-right {
-    .imgBox {
-      height: 100%;
-    }
+  .imgBox {
+    height: 100%;
   }
 
   .service-content {
