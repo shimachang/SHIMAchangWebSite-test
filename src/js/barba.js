@@ -27,8 +27,17 @@ const gaPush = () => {
     gtag('config', 'G-WK9GR62C5Y', { page_path: location.pathname });
   }
 };
+//TODO: 採用検討中
+//const $mask = $('.barbaMask');
 
-// const $mask = $('.barbaMask');
+function copyright() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const copyRight = `©︎ Copyright ${year} SHIMAchang All right reserved`;
+  const $copyright = $('.copyright');
+
+  $copyright.append(`<P>${copyRight}</P>`);
+}
 
 barba.init({
   sync: true,
@@ -53,6 +62,7 @@ barba.init({
         $('html, body').scrollTop(0);
       },
       enter({ next }) {
+        copyright();
         replaceHeadTags(next);
         gaPush();
       },
@@ -69,7 +79,14 @@ barba.init({
           };
           setTimeout(showImage, 500);
         };
+        copyright();
         otherPageShow();
+      },
+    },
+    {
+      namespace: 'top',
+      afterEnter() {
+        copyright();
       },
     },
   ],

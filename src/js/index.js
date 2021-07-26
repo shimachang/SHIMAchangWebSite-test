@@ -8,4 +8,3 @@ import 'intersection-observer';
 import './hamburger';
 import './scroll';
 import './loader';
-import './copyright';
